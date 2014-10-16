@@ -5,17 +5,23 @@ public class Queue {
     private Nodo fim;
     private int lenght = 0;
     
+    public void Queue(){
+    	inicio = null;
+    	fim = null;
+    }
+    
     public void print() {
     	Nodo aux = inicio;
     	if(empty()){
     		System.out.println( "Lista vazia!" );
     	}
     	int i = 0;
-    	while( aux != fim.proximo ) {
-    		System.out.println( "Processo "+ i + ": \n\t" + aux.getProcess().to_s() + "\n" );
+    	while( i < lenght ) {
+    		System.out.println( aux.getProcess().to_s() + "\n" );
     		i++;
     		aux = aux.proximo;
     	}
+    	// System.out.println( "Processo "+ i + ": \n\t" + aux.getProcess().to_s() + "\n" );
     }
     
     public void next(int time) {

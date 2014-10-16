@@ -3,7 +3,10 @@ package escalonador;
 import java.util.Scanner;
 
 public class App {
-	
+
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Scheduler.");
@@ -14,7 +17,10 @@ public class App {
 		System.out.println("Creating Scheduler");
 		Scheduler schedule = new Scheduler(quantum, max);
 		schedule.start();
-		schedule.run();
+		schedule.print_queue();
+		schedule.iteration();
+		schedule.print_queue();
+//		schedule.run();
 	}
 
 }
