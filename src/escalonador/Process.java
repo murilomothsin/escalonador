@@ -1,15 +1,11 @@
 package escalonador;
 
-import java.util.Random;
-
 class Process {
 	
-	public static final int OK = 1;
 	private int time;
 	private int time_elapsed;
 	private int id;
 	private static int generate = 1;
-	private int status;
 
 	public Process(int time) {
 		System.out.println(generate);
@@ -28,10 +24,6 @@ class Process {
 
 	public String to_s() {
 		return "Process: " + id + "\nTime: " + time + "\nTime elapsed: " + time_elapsed;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
 	}
     
 }

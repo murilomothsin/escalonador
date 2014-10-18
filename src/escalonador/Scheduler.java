@@ -17,9 +17,9 @@ public class Scheduler {
 	}
 	
 	public void print_queue() {
-		System.out.println("Printing...");
+		System.out.println("\nPrinting internal queue...");
 		queue.print();
-		System.out.println("Printed!");
+		System.out.println("\nDone!");
 	}
 	
 	public void start() {
@@ -46,20 +46,19 @@ public class Scheduler {
 	}
 	
 	public void iteration() {
-		Nodo n = queue.getFirst();
+		int size_of_queue = queue.size();
 		Process p;
 		int i = 0;
 		System.out.println("Processing...");
-		while (i < queue.size()){
-			p = n.getProcess();
+		while (i < size_of_queue){
+			p = queue.getFirst().getProcess();
+//			System.out.println(p.to_s());
 			if(p.getTime() >= quantum){
-				p.TimeElapsed(quantum);
+				queue.next(quantum);
 			}else{
-				p.TimeElapsed(p.getTime());
-				p.setStatus(Process.OK);
+				queue.remove(p.getTime());
 			}
 			i++;
-			n = n.proximo;
 		}
 		System.out.println("Processed!");
 	}

@@ -17,7 +17,7 @@ public class App {
 		System.out.println("Creating Scheduler");
 		Scheduler schedule = new Scheduler(quantum, max);
 		schedule.start();
-		schedule.print_queue();
+//		schedule.print_queue();
 		schedule.iteration();
 		schedule.print_queue();
 //		schedule.run();

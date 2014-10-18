@@ -1,11 +1,11 @@
 package escalonador;
 
 class Nodo {
-    public Nodo proximo;
+    public Nodo next;
     private Process p;
     
     public Nodo (Process p) {
-        this.proximo = null;
+        this.next = null;
         this.p = p;
     }
 

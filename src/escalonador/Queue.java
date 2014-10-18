@@ -1,75 +1,75 @@
 package escalonador;
 
 public class Queue {
-    private Nodo inicio;
-    private Nodo fim;
+    private Nodo start;
+    private Nodo end;
     private int lenght = 0;
     
     public void Queue(){
-    	inicio = null;
-    	fim = null;
+    	start = null;
+    	end = null;
     }
     
     public void print() {
-    	Nodo aux = inicio;
+    	Nodo aux = start;
     	if(empty()){
-    		System.out.println( "Lista vazia!" );
+    		System.out.println( "Empty queue!" );
     	}
     	int i = 0;
     	while( i < lenght ) {
     		System.out.println( aux.getProcess().to_s() + "\n" );
     		i++;
-    		aux = aux.proximo;
+    		aux = aux.next;
     	}
-    	// System.out.println( "Processo "+ i + ": \n\t" + aux.getProcess().to_s() + "\n" );
     }
     
     public void next(int time) {
-    	inicio.getProcess().TimeElapsed(time);
-    	fim.proximo = inicio;
-    	inicio = inicio.proximo;
+    	System.out.println("Setuping process time: " + time);
+    	start.getProcess().TimeElapsed(time);
+    	end = start;
+    	start = start.next;
     }
     
     public void add(Process p) {
         Nodo n = new Nodo(p);
         if(empty()){
-            inicio = n;
-            fim = n;
-            fim.proximo = inicio;
+            start = n;
+            end = n;
+            end.next = start;
         }else{
-            n.proximo = inicio;
-            fim.proximo = n;
-            fim = n;
+            n.next = start;
+            end.next = n;
+            end = n;
         }
         lenght++;
     }
     
     public Process remove(int quantum) {
-        Process removido = null;
+        Process removed = null;
         if(empty())
-            removido = null;
-        else if(inicio == fim){
-        	inicio.getProcess().TimeElapsed(quantum);
-        	removido = inicio.getProcess();
-        	inicio = fim = null;
+            removed = null;
+        else if(start == end){
+        	start.getProcess().TimeElapsed(quantum);
+        	removed = start.getProcess();
+        	start = end = null;
         }else{
-        	inicio.getProcess().TimeElapsed(quantum);
-        	removido = inicio.getProcess();
-        	fim = inicio;
-        	inicio = inicio.proximo;
-        	fim.proximo = inicio;
+        	start.getProcess().TimeElapsed(quantum);
+        	removed = start.getProcess();
+        	start = start.next;
+        	end.next = start;
         }
-        if(removido != null)
+        if(removed != null)
         	lenght--;
-        return removido;
+        System.out.println("Removed: " + removed.to_s());
+        return removed;
     }
     
     public Nodo getFirst() {
-    	return inicio;
+    	return start;
     }
     
     public boolean empty() {
-        return inicio == null && fim == null;
+        return start == null && end == null;
     }
 
 	public int size() {
